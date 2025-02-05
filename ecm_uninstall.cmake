@@ -1,8 +1,8 @@
-if(NOT EXISTS "/home/lliurex/focu/install_manifest.txt")
-    message(FATAL_ERROR "Cannot find install manifest: /home/lliurex/focu/install_manifest.txt")
+if(NOT EXISTS "/home/lliurex/git/kwin-focustrack-effect/install_manifest.txt")
+    message(FATAL_ERROR "Cannot find install manifest: /home/lliurex/git/kwin-focustrack-effect/install_manifest.txt")
 endif()
 
-file(READ "/home/lliurex/focu/install_manifest.txt" files)
+file(READ "/home/lliurex/git/kwin-focustrack-effect/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
     message(STATUS "Uninstalling $ENV{DESTDIR}${file}")
