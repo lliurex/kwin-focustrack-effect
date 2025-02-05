@@ -1,7 +1,7 @@
--I/home/lliurex/focu/src/kcm
--I/home/lliurex/focu/src/kcm
+-I/home/lliurex/git/kwin-focustrack-effect/src/kcm
+-I/home/lliurex/git/kwin-focustrack-effect/src/kcm
 -D_GNU_SOURCE
 -D_LARGEFILE64_SOURCE
 -o
-/home/lliurex/focu/src/kcm/kwineffects_interface.moc
-/home/lliurex/focu/src/kcm/kwineffects_interface.h
+/home/lliurex/git/kwin-focustrack-effect/src/kcm/kwineffects_interface.moc
+/home/lliurex/git/kwin-focustrack-effect/src/kcm/kwineffects_interface.h
