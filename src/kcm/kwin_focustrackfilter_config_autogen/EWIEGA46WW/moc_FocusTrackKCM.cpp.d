@@ -1,5 +1,5 @@
-/home/lliurex/focu/src/kcm/kwin_focustrackfilter_config_autogen/EWIEGA46WW/moc_FocusTrackKCM.cpp: /home/lliurex/focu/src/kcm/FocusTrackKCM.h \
-  /home/lliurex/focu/src/kcm/kwin_focustrackfilter_config_autogen/moc_predefs.h \
+/home/lliurex/git/kwin-focustrack-effect/src/kcm/kwin_focustrackfilter_config_autogen/EWIEGA46WW/moc_FocusTrackKCM.cpp: /home/lliurex/git/kwin-focustrack-effect/src/kcm/FocusTrackKCM.h \
+  /home/lliurex/git/kwin-focustrack-effect/src/kcm/kwin_focustrackfilter_config_autogen/moc_predefs.h \
   /usr/include/KF5/KAuthCore/KAuth/Action \
   /usr/include/KF5/KAuthCore/kauth/action.h \
   /usr/include/KF5/KAuthCore/kauth/kauthcore_export.h \
