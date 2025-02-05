@@ -1,0 +1,29 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "juanma1980@gmail.com",
+                "Name": "juanma1980"
+            }
+        ],
+        "Category": "Accessibility",
+        "Description": "Improve current focus visibility",
+        "Description[es]": "Seguimiento del foco",
+        "Description[ca]": "Seguiment del focus",
+        "EnabledByDefault": false,
+        "Id": "kwin4_effect_focustrack",
+        "License": "GPL",
+        "Name": "Focus track",
+        "Name[es]": "Seguimiento del foco",
+        "Name[ca]": "Seguiment del focus",
+        "ServiceTypes": [
+            "KWin/Effect"
+        ],
+        "Version": "1.0"
+    },
+    "org.kde.kwin.effect": {
+        "enabledByDefaultMethod": false
+    },
+    "X-KDE-Ordering": "5",
+    "X-KDE-ConfigModule": "kwin_focustrackfilter_config"
+}

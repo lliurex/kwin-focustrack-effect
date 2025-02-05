@@ -1,0 +1,4 @@
+File=options.kcfg
+ClassName=FocusTrackConfig
+Singleton=true
+Mutators=true
