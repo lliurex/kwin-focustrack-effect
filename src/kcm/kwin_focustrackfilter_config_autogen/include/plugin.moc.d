@@ -1,7 +1,7 @@
-/home/lliurex/focu/src/kcm/kwin_focustrackfilter_config_autogen/include/plugin.moc: /home/lliurex/focu/src/kcm/plugin.cpp \
-  /home/lliurex/focu/src/kcm/kwin_focustrackfilter_config_autogen/moc_predefs.h \
-  /home/lliurex/focu/src/kcm/metadata.json \
-  /home/lliurex/focu/src/kcm/FocusTrackKCM.h \
+/home/lliurex/git/kwin-focustrack-effect/src/kcm/kwin_focustrackfilter_config_autogen/include/plugin.moc: /home/lliurex/git/kwin-focustrack-effect/src/kcm/plugin.cpp \
+  /home/lliurex/git/kwin-focustrack-effect/src/kcm/kwin_focustrackfilter_config_autogen/moc_predefs.h \
+  /home/lliurex/git/kwin-focustrack-effect/src/kcm/metadata.json \
+  /home/lliurex/git/kwin-focustrack-effect/src/kcm/FocusTrackKCM.h \
   /usr/include/KF5/KAuthCore/KAuth/Action \
   /usr/include/KF5/KAuthCore/kauth/action.h \
   /usr/include/KF5/KAuthCore/kauth/kauthcore_export.h \
