@@ -1,16 +1,11 @@
 #Copyright 2024 - LliureX Team
 
-# Color Correction Filters
+# Focus Track Effect
 
-This effect is based on prior work of Matin Lotfaliei and Rob, authors of the KDE-Rounded-Corners effect, Kevinlekiller author of kwin-effect-shaders. Special thanks to Patricio Gonzalez Vivo for his daltonize shader of Lygia.
+This effect draws a frame around the actual focused widget. 
 
-- ![KDE-Rounded-Corners](https://github.com/matinlotfali/KDE-Rounded-Corners)
-- ![kwin-effect-shaders](https://github.com/kevinlekiller/kwin-effect-shaders)
-- ![Lygia](https://github.com/patriciogonzalezvivo/lygia)
 
-The main idea is to manipulate pixel colors with a shader for helping in color-blindness related issues.
-
-The configuration is pretty simple, only choose the desired color correction.
+The configuration is pretty simple, only choose the desired border color and with
 
 # How to build from source code:
 
@@ -68,8 +63,8 @@ You need to install development packages for your distribution first:
 
 Then clone the source code and compile it:
 ```bash
-git clone https://github.com/lliurex/kwin-colorcorrection-effect
-cd kwin-colorcorrection-effect
+git clone https://github.com/lliurex/kwin-focustrack-effect
+cd kwin-focustrack-effect
 mkdir build
 cd build
 cmake .. --install-prefix /usr
@@ -79,7 +74,7 @@ sudo make install
 
 # Settings
 
-You can change the color correction, or disable the effect in:
+You can change the frame options, or disable the effect in:
 
-> [ System Settings ] --> [ Workspace Behavior ] --> [ Desktop Effects ] --> [ Color Correction Filters ]
+> [ System Settings ] --> [ Workspace Behavior ] --> [ Desktop Effects ] --> [ Track Focus ]
 
