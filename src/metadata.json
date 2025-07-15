@@ -25,5 +25,5 @@
         "enabledByDefaultMethod": false
     },
     "X-KDE-Ordering": "5",
-    "X-KDE-ConfigModule": "kwin_focustrackfilter_config"
+    "X-KDE-ConfigModule": "kwin_focustrack_config"
 }
