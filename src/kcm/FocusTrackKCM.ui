@@ -20,11 +20,17 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="vLayout">
-  <layout class="QGridLayout" name="vLayout">
    <item row="0" column="0">
     <widget class="QPushButton" name="btn_borderColor">
      <property name="text">
       <string>Border color</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="kfcg_borderColor">
+     <property name="text">
+      <string>red</string>
      </property>
     </widget>
    </item>
