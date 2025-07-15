@@ -11,5 +11,11 @@
         <entry name="borderWidth" type="UInt">
             <default>0</default>
         </entry>
+        <entry name="frameColor" type="UInt">
+            <default>0</default>
+        </entry>
+        <entry name="followFocus" type="UInt">
+            <default>0</default>
+        </entry>
     </group>
 </kcfg>
