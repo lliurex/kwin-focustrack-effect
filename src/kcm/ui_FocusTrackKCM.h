@@ -52,6 +52,10 @@ public:
 		btn_borderColor->connect(btn_borderColor, &QPushButton::clicked,this,&Ui_Form::chooseColor);
         vLayout->addWidget(btn_borderColor,0,0);
 
+        kfcg_borderColor = new QLabel(Form);
+		kfcg_borderColor->setText("");
+        vLayout->addWidget(kcfg_borderColor,0,1);
+
         lbl_borderWidth = new QLabel(Form);
 		lbl_borderWidth->setText("Border width");
         vLayout->addWidget(lbl_borderWidth,1,0);
