@@ -11,9 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,8 +22,11 @@ QT_BEGIN_NAMESPACE
 class Ui_Form
 {
 public:
-    QVBoxLayout *vLayout;
-    QLineEdit *kcfg_borderWidth;
+    QGridLayout *vLayout;
+	QLabel *lbl_borderWidth;
+    QSpinBox *kcfg_borderWidth;
+	QLabel *lbl_Opacity;
+    QSpinBox *kcfg_Opacity;
     QCheckBox *kcfg_followFocus;
 
     void setupUi(QWidget *Form)
@@ -31,22 +35,33 @@ public:
             Form->setObjectName(QString::fromUtf8("Form"));
         Form->resize(658, 592);
         Form->setMinimumSize(QSize(400, 0));
-        vLayout = new QVBoxLayout(Form);
+        vLayout = new QGridLayout(Form);
         vLayout->setObjectName(QString::fromUtf8("vLayout"));
-        kcfg_borderWidth = new QLineEdit(Form);
-        kcfg_borderWidth->setObjectName(QString::fromUtf8("kcfg_borderWidth"));
+
         QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
+
+        lbl_borderWidth = new QLabel(Form);
+		lbl_borderWidth->setText("Border width");
+        vLayout->addWidget(lbl_borderWidth,0,0);
+        kcfg_borderWidth = new QSpinBox(Form);
+        kcfg_borderWidth->setObjectName(QString::fromUtf8("kcfg_borderWidth"));
         sizePolicy.setHeightForWidth(kcfg_borderWidth->sizePolicy().hasHeightForWidth());
         kcfg_borderWidth->setSizePolicy(sizePolicy);
+        vLayout->addWidget(kcfg_borderWidth,0,1);
 
-        vLayout->addWidget(kcfg_borderWidth);
+        lbl_Opacity = new QLabel(Form);
+		lbl_Opacity->setText("Opacity");
+        vLayout->addWidget(lbl_Opacity,1,0);
+        kcfg_Opacity = new QSpinBox(Form);
+        kcfg_Opacity->setObjectName(QString::fromUtf8("kcfg_Opacity"));
+        kcfg_Opacity->setSizePolicy(sizePolicy);
+        vLayout->addWidget(kcfg_Opacity,1,1);
 
         kcfg_followFocus = new QCheckBox(Form);
         kcfg_followFocus->setObjectName(QString::fromUtf8("kcfg_followFocus"));
-
-        vLayout->addWidget(kcfg_followFocus);
+        vLayout->addWidget(kcfg_followFocus,2,0);
 
 
         retranslateUi(Form);
