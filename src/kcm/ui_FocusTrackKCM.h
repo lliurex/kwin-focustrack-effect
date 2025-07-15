@@ -12,7 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -22,8 +22,8 @@ class Ui_Form
 {
 public:
     QVBoxLayout *vLayout;
-    QComboBox *kcfg_colorCorrectionFilter;
-    QCheckBox *kcfg_applyFocusTrack;
+    QLineEdit *kcfg_borderWidth;
+    QCheckBox *kcfg_followFocus;
 
     void setupUi(QWidget *Form)
     {
@@ -33,36 +33,23 @@ public:
         Form->setMinimumSize(QSize(400, 0));
         vLayout = new QVBoxLayout(Form);
         vLayout->setObjectName(QString::fromUtf8("vLayout"));
-        kcfg_colorCorrectionFilter = new QComboBox(Form);
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->addItem(QString());
-        kcfg_colorCorrectionFilter->setObjectName(QString::fromUtf8("kcfg_colorCorrectionFilter"));
+        kcfg_borderWidth = new QLineEdit(Form);
+        kcfg_borderWidth->setObjectName(QString::fromUtf8("kcfg_borderWidth"));
         QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(kcfg_colorCorrectionFilter->sizePolicy().hasHeightForWidth());
-        kcfg_colorCorrectionFilter->setSizePolicy(sizePolicy);
+        sizePolicy.setHeightForWidth(kcfg_borderWidth->sizePolicy().hasHeightForWidth());
+        kcfg_borderWidth->setSizePolicy(sizePolicy);
 
-        vLayout->addWidget(kcfg_colorCorrectionFilter);
+        vLayout->addWidget(kcfg_borderWidth);
 
-        kcfg_applyFocusTrack = new QCheckBox(Form);
-        kcfg_applyFocusTrack->setObjectName(QString::fromUtf8("kcfg_applyFocusTrack"));
+        kcfg_followFocus = new QCheckBox(Form);
+        kcfg_followFocus->setObjectName(QString::fromUtf8("kcfg_followFocus"));
 
-        vLayout->addWidget(kcfg_applyFocusTrack);
+        vLayout->addWidget(kcfg_followFocus);
 
 
         retranslateUi(Form);
-
-        kcfg_colorCorrectionFilter->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Form);
@@ -71,19 +58,8 @@ public:
     void retranslateUi(QWidget *Form)
     {
         Form->setWindowTitle(QCoreApplication::translate("Form", "Form", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(0, QCoreApplication::translate("Form", "Protanopia", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(1, QCoreApplication::translate("Form", "Protanopia (Alt. 1)", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(2, QCoreApplication::translate("Form", "Protanopia (Alt. 2)", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(3, QCoreApplication::translate("Form", "Deuteranopia", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(4, QCoreApplication::translate("Form", "Deuteranopia (Alt. 1)", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(5, QCoreApplication::translate("Form", "Deuteranopia (Alt. 2)", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(6, QCoreApplication::translate("Form", "Tritanopia", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(7, QCoreApplication::translate("Form", "Tritanopia (Alt. 1)", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(8, QCoreApplication::translate("Form", "Tritanopia (Alt. 2)", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(9, QCoreApplication::translate("Form", "Achromatopsia", nullptr));
-        kcfg_colorCorrectionFilter->setItemText(10, QCoreApplication::translate("Form", "Achromatopsia (Alt. 1)", nullptr));
 
-        kcfg_applyFocusTrack->setText(QCoreApplication::translate("Form", "Boost effect", nullptr));
+        kcfg_followFocus->setText(QCoreApplication::translate("Form", "Mouse follow focus", nullptr));
     } // retranslateUi
 
 };
