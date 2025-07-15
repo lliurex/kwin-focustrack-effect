@@ -25,6 +25,7 @@
 #include <QtDBus/QDBusMessage>
 #include <QtDBus/QDBusError>
 #include <QtDBus/QDBusPendingReply>
+#include <QtDBus/QDBusMetaType>
 #include <KX11Extras>
 #include <QJsonDocument>
 
@@ -66,6 +67,8 @@ FocusTrackEffect::FocusTrackEffect()
 #if QT_VERSION_MAJOR < 6
 			qInfo() << "FocusTrackEffect: Connecting events...";
 			connect(KWin::effects, &KWin::EffectsHandler::windowFinishUserMovedResized, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
+			connect(KWin::effects, &KWin::EffectsHandler::windowMaximizedStateChanged, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
+
 #endif
 		}
 		this->loadFrameQml();
@@ -110,6 +113,8 @@ void FocusTrackEffect::getCurrentFocusCoordsAsync()
 									this); 
 	qInfo() << "FocusTrackEffect: Interface focusChanged";
 	// Call the method asynchronously
+	qDBusRegisterMetaType<QMap<QString, int16_t>>();
+
 	QDBusPendingCall pendingCall = interface->asyncCall("getCurrentFocusCoords");
 	// Handle the response
 	QDBusPendingCallWatcher *callWatcher = new QDBusPendingCallWatcher(pendingCall, this);
@@ -118,12 +123,13 @@ void FocusTrackEffect::getCurrentFocusCoordsAsync()
 
 void FocusTrackEffect::handleDBusCurrentCoordsAsync(QDBusPendingCallWatcher *call)
 { 
-	QDBusPendingReply<QString> reply = *call;
+	QDBusPendingReply<QMap<QString,int16_t>> reply = *call;
+
 	if (reply.isError()) {
 		qDebug() << "Error:" << reply.error().message();
 	} else {
 		// Process the reply
-		QString result = reply.value();
+		QMap result = reply.value();
 		qInfo() << "FocusTrack: Current coords:" << result;
 	}
 }
@@ -155,6 +161,7 @@ void FocusTrackEffect::moveFrame(const QByteArray &coords)
 								  Q_ARG(QVariant,coordY),
 								  Q_ARG(QVariant,coordW),
 								  Q_ARG(QVariant,coordH));
+	qInfo()<<"Moving end";
 }
 
 FocusTrackEffect::~FocusTrackEffect() = default;
