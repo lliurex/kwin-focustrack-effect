@@ -5,14 +5,11 @@
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
     <kcfgfile name="kwinrc"/>
     <group name="Effect-ًFocusTrack">
-        <entry name="borderColor" type="UInt">
-            <default>0</default>
-        </entry>
         <entry name="borderWidth" type="UInt">
             <default>5</default>
         </entry>
         <entry name="Opacity" type="UInt">
-            <default>100</default>
+            <default>0</default>
         </entry>
         <entry name="followFocus" type="UInt">
             <default>0</default>
