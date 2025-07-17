@@ -1,3 +1,9 @@
+kwin-effect-focustrack (0.2.0-0lliurex23) jammy; urgency=medium
+
+  * RC release
+
+ -- Juanma1980 <juanma1980@gmail.com>  Thu, 17 Jul 2025 10:38:15 +0200
+
 kwin-effect-focustrack (0.1.0-0lliurex23) jammy-testing; urgency=medium
 
   * Initial release. 
