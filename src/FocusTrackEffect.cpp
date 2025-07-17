@@ -58,6 +58,14 @@ FocusTrackEffect::FocusTrackEffect()
 			qWarning("FocusTrack: Cannot connect to the D-Bus session bus.\n");
 		} else {
 			QDBusConnection bus = QDBusConnection::sessionBus();
+
+			QDBusInterface *interface = new QDBusInterface(
+									"net.lliurex.accessibility",		 // service name
+									"/net/lliurex/accessibility",		   // object path
+									"net.lliurex.accessibility",	   // interface name
+									bus,
+									this); 
+			QDBusPendingCall pendingCall = interface->asyncCall("trackFocus");
 	   		bool connectionState = bus.connect(
 	   										"net.lliurex.accessibility",		 // service name
 											"/net/lliurex/accessibility",		   // object path
@@ -71,7 +79,7 @@ FocusTrackEffect::FocusTrackEffect()
         	//for (const auto& win: KWin::effects->stackingOrder())
             //	windowAdded(win);
         	//connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::windowAdded);
-        //connect(KWin::effects, &KWin::EffectsHandler::windowDeleted, this, &FocusTrackEffect::windowRemoved);
+            //connect(KWin::effects, &KWin::EffectsHandler::windowDeleted, this, &FocusTrackEffect::windowRemoved);
 #if QT_VERSION_MAJOR < 6
 			qInfo() << "FocusTrackEffect: Connecting events...";
 			connect(KWin::effects, &KWin::EffectsHandler::windowFinishUserMovedResized, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);

@@ -5,8 +5,9 @@
 */
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
 
-Window {
+Window{
 	id: frame
 		property bool outputOnly:true
 		property int borderWidth: 10
@@ -17,8 +18,9 @@ Window {
 		width:200
 		height:300
 		visible:false
-		flags:Qt.FrameLessHint|Qt.WindowStaysOnTopHint|Qt.WindowSystemMenuHint| Qt.X11BypassWindowManagerHint | Qt.FramelessWindowHint| Qt.WindowTransparentForInput| Qt.TransparentForMouseEvents|Qt.OnScreenDisplay
+		flags:Qt.FrameLessHint|Qt.WindowStaysOnTopHint|Qt.WindowSystemMenuHint| Qt.X11BypassWindowManagerHint | Qt.FramelessWindowHint| Qt.WindowTransparentForInput| Qt.TransparentForMouseEvents|Qt.OnScreenDisplay|Qt.PopUp
 		Rectangle {
+			parent: Overlay.overlay
 			id:rect
 			anchors.fill:parent
 			border.color:frame.borderColor
@@ -32,17 +34,14 @@ Window {
 		   frame.x=x-frame.borderWidth;
 		   frame.width=w+frame.borderWidth*2;
 		   frame.height=h+frame.borderWidth*2;
-		   console.log("PARMS");
-		   console.log(frame.borderColor);
-		   console.log(frame.frameOpacity);
-		   console.log(frame.frameColor);
-		   console.log("MOVING");
+           frame.raise();
 
 
 
 		} // Window
     Component.onCompleted: {
         frame.show();
+		frame.raise();
 
     }
 
