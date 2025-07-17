@@ -27,6 +27,8 @@ public:
     QGridLayout *vLayout;
 	KColorButton *kcfg_borderColor;
 	QLabel *lbl_borderColor;
+	KColorButton *kcfg_frameColor;
+	QLabel *lbl_frameColor;
 	QLabel *lbl_borderWidth;
     QSpinBox *kcfg_borderWidth;
 	QLabel *lbl_Opacity;
@@ -50,6 +52,7 @@ public:
 		lbl_borderColor->setText("Border color");
         vLayout->addWidget(lbl_borderColor,0,0);
         kcfg_borderColor = new KColorButton(Form);
+        kcfg_borderColor->setObjectName(QString::fromUtf8("kcfg_borderColor"));
         vLayout->addWidget(kcfg_borderColor,0,1);
 
         lbl_borderWidth = new QLabel(Form);
@@ -61,17 +64,24 @@ public:
         kcfg_borderWidth->setSizePolicy(sizePolicy);
         vLayout->addWidget(kcfg_borderWidth,1,1);
 
+        lbl_frameColor = new QLabel(Form);
+		lbl_frameColor->setText("Framer color");
+        vLayout->addWidget(lbl_frameColor,2,0);
+        kcfg_frameColor = new KColorButton(Form);
+        kcfg_frameColor->setObjectName(QString::fromUtf8("kcfg_frameColor"));
+        vLayout->addWidget(kcfg_frameColor,2,1);
+
         lbl_Opacity = new QLabel(Form);
 		lbl_Opacity->setText("Opacity");
-        vLayout->addWidget(lbl_Opacity,2,0);
+        vLayout->addWidget(lbl_Opacity,3,0);
         kcfg_Opacity = new QSpinBox(Form);
         kcfg_Opacity->setObjectName(QString::fromUtf8("kcfg_Opacity"));
         kcfg_Opacity->setSizePolicy(sizePolicy);
-        vLayout->addWidget(kcfg_Opacity,2,1);
+        vLayout->addWidget(kcfg_Opacity,3,1);
 
         kcfg_followFocus = new QCheckBox(Form);
         kcfg_followFocus->setObjectName(QString::fromUtf8("kcfg_followFocus"));
-        vLayout->addWidget(kcfg_followFocus,3,0);
+        vLayout->addWidget(kcfg_followFocus,4,0);
 
 
         retranslateUi(Form);
