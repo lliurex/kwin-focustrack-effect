@@ -21,16 +21,16 @@
   </property>
   <layout class="QGridLayout" name="vLayout">
    <item row="0" column="0">
-    <widget class="QPushButton" name="btn_borderColor">
+    <widget class="QLabel" name="lbl_borderColor">
      <property name="text">
-      <string>Border color</string>
+      <string>Border color:</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLabel" name="kfcg_borderColor">
-     <property name="text">
-      <string>red</string>
+    <widget class="KColorButton" name="kcfg_borderColor">
+     <property name="color">
+      <color></color>
      </property>
     </widget>
    </item>
@@ -84,6 +84,9 @@
   </layout>
  </widget>
  <customwidgets>
+   <class>KColorButton</class>
+   <extends>QPushButton</extends>
+   <header>kcolorbutton.h</header>
  </customwidgets>
  <resources/>
  <connections/>

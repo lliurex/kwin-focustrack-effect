@@ -65,8 +65,9 @@ public Q_SLOTS:
 	[[nodiscard]] QString get_window_titles() const;
 
 private Q_SLOTS:
-	void windowRemoved(KWin::EffectWindow *window);
-	void windowResized(KWin::EffectWindow *, const QRectF &) { checkTiled(); }
+    void windowAdded(KWin::EffectWindow *window);
+    void windowRemoved(KWin::EffectWindow *window);
+    void windowResized(KWin::EffectWindow *, const QRectF &) { checkTiled(); }
 	void handleDBusSignal(const QString &coords);
 	void getCurrentFocusCoordsAsync();
 	void handleDBusCurrentCoordsAsync(QDBusPendingCallWatcher *call);
@@ -79,6 +80,7 @@ private:
 	bool isTiled(const KWin::EffectWindow *w) const { return m_managed.at(w); }
 	void checkTiled();
 	bool loadFrameQml();
+	KConfigGroup readConfig();
 	void moveFrame(const QByteArray &coords);
 	template<bool vertical> bool checkTiled(double window_start, const double& screen_end, double gap = -1);
 	QQmlApplicationEngine *engine;

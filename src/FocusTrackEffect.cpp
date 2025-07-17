@@ -28,6 +28,8 @@
 #include <QtDBus/QDBusMetaType>
 #include <KX11Extras>
 #include <QJsonDocument>
+#include <KSharedConfig>
+#include <KConfigGroup>
 
 #if QT_VERSION_MAJOR >= 6
 	#include <opengl/glutils.h>
@@ -44,6 +46,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QGuiApplication>
+#include <QString>
+#include <QColor>
 
 FocusTrackEffect::FocusTrackEffect()
 	: KWin::OffscreenEffect()
@@ -64,6 +68,10 @@ FocusTrackEffect::FocusTrackEffect()
 			qInfo() << "FocusTrackEffect: Connected to focusChanged: " <<connectionState;
 		}
 		if(m_shaderManager.IsValid()) {
+        	//for (const auto& win: KWin::effects->stackingOrder())
+            //	windowAdded(win);
+        	//connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::windowAdded);
+        //connect(KWin::effects, &KWin::EffectsHandler::windowDeleted, this, &FocusTrackEffect::windowRemoved);
 #if QT_VERSION_MAJOR < 6
 			qInfo() << "FocusTrackEffect: Connecting events...";
 			connect(KWin::effects, &KWin::EffectsHandler::windowFinishUserMovedResized, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
@@ -75,6 +83,13 @@ FocusTrackEffect::FocusTrackEffect()
 		this->getCurrentFocusCoordsAsync();
 	}
 
+KConfigGroup FocusTrackEffect::readConfig()
+{
+		KSharedConfigPtr config=KSharedConfig::openConfig("kwinrc");
+		KConfigGroup group(config,"Effect-ًFocusTrack");
+		const auto gL=group.keyList();
+		return(group);
+}
 bool FocusTrackEffect::loadFrameQml()
 {
 	engine = new QQmlApplicationEngine();
@@ -91,7 +106,31 @@ bool FocusTrackEffect::loadFrameQml()
 	if (!engine->rootObjects().isEmpty()) {
 		window = qobject_cast<QQuickWindow *>(engine->rootObjects().first());
 		if (window) {
+			int borderWidth=1;
+			
 			qDebug() << "Window created successfully.";
+			QColor color=QColor(25,0,255,0.1);
+			KConfigGroup group=this->readConfig();
+			QString width=group.readEntry("borderWidth","5");
+			QString opacity=group.readEntry("Opacity","0");
+			QColor borderColor=group.readEntry("borderColor",color);
+			QColor frameColor=group.readEntry("frameColor",borderColor);
+			float alpha=opacity.toFloat();
+			if (alpha>0)
+				alpha=alpha-0.01;
+			if (alpha>99)
+				alpha=99;
+
+			frameColor.setAlphaF(alpha/100);
+			borderColor.setAlphaF(0.9);
+			window->setProperty("borderWidth",width);
+			window->setProperty("frameOpacity",opacity);
+			window->setProperty("borderColor",borderColor.name(borderColor.HexArgb));
+			window->setProperty("frameColor",frameColor.name(frameColor.HexArgb));
+			qInfo() << "FocusTrack: Config width:" << width;
+			qInfo() << "FocusTrack: Config opacity:" << opacity;
+			qInfo() << "FocusTrack: Config fColor:" << frameColor.name(frameColor.HexArgb);
+			qInfo() << "FocusTrack: Config bColor:" << borderColor.name(borderColor.HexArgb);
 			window->show();
 
 		} else {
@@ -166,6 +205,22 @@ void FocusTrackEffect::moveFrame(const QByteArray &coords)
 
 FocusTrackEffect::~FocusTrackEffect() = default;
 
+void FocusTrackEffect::windowAdded(KWin::EffectWindow *w)
+{
+    qDebug() << w->windowRole() << w->windowType() << w->windowClass();
+    //const QSet<QString> hardExceptions { "plasmashell", "kscreenlocker_greet", "ksmserver", "krunner" };
+    const auto name = w->windowClass().split(QChar::Space).first();
+    //if (hardExceptions.contains(name))
+    //    return;
+    if (const auto& [w2, r] = m_managed.insert({w, false}); r) {
+#if QT_VERSION_MAJOR >= 6
+        connect(w, &KWin::EffectWindow::windowFrameGeometryChanged, this, &FocusTrackEffect::windowResized);
+#endif
+        redirect(w);
+        setShader(w, m_shaderManager.GetShader().get());
+        checkTiled();
+    }
+}
 void FocusTrackEffect::windowRemoved(KWin::EffectWindow *w)
 {
 	m_managed.erase(w);

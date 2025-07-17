@@ -11,14 +11,13 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QColorDialog>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QWidget>
+#include <KColorButton>
 
 QT_BEGIN_NAMESPACE
 
@@ -26,8 +25,8 @@ class Ui_Form : public QDialog
 {
 public:
     QGridLayout *vLayout;
-	QColor *kcfg_borderColor;
-	QPushButton *btn_borderColor;
+	KColorButton *kcfg_borderColor;
+	QLabel *lbl_borderColor;
 	QLabel *lbl_borderWidth;
     QSpinBox *kcfg_borderWidth;
 	QLabel *lbl_Opacity;
@@ -47,13 +46,10 @@ public:
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
 
-        btn_borderColor = new QPushButton(Form);
-		btn_borderColor->setText("Border color");
-		btn_borderColor->connect(btn_borderColor, &QPushButton::clicked,this,&Ui_Form::chooseColor);
-        vLayout->addWidget(btn_borderColor,0,0);
-
-        kfcg_borderColor = new QLabel(Form);
-		kfcg_borderColor->setText("");
+        lbl_borderColor = new QLabel(Form);
+		lbl_borderColor->setText("Border color");
+        vLayout->addWidget(lbl_borderColor,0,0);
+        kcfg_borderColor = new KColorButton(Form);
         vLayout->addWidget(kcfg_borderColor,0,1);
 
         lbl_borderWidth = new QLabel(Form);
@@ -88,19 +84,8 @@ public:
     {
         Form->setWindowTitle(QCoreApplication::translate("Form", "Form", nullptr));
 
-        kcfg_followFocus->setText(QCoreApplication::translate("Form", "Mouse follow focus", nullptr));
+        kcfg_followFocus->setText(QCoreApplication::translate("Form", "Mouse follows focus", nullptr));
     } // retranslateUi
-public slots:
-	QColor chooseColor()
-	{
-		QColor color;
-		color=QColorDialog::getColor(Qt::white,NULL, "Choose border color");
-		if (color.isValid())
-		{
-			kcfg_borderColor=&color;
-		}
-		return(color);
-	}
 
 };
 

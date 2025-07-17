@@ -32,9 +32,8 @@ FocusTrackShader::FocusTrackShader():
     if (!m_shader->isValid())
         qCritical() << "FocusTrack: no valid shaders found! FocusTrack will not work.";
 
-    m_shader_focusTrackFilter = m_shader->uniformLocation("focusTrackFilter");
-    m_shader_applyFocusTrack = m_shader->uniformLocation("applyFocusTrack");
-    qInfo() << "FocusTrack: shaders loaded. "<< m_shader->uniformLocation("focusTrackFilter");
+    m_shader_focusTrackFilter = m_shader->uniformLocation("borderWidth");
+    qInfo() << "FocusTrack: shaders loaded. "<< m_shader->uniformLocation("borderWidth");
 }
 
 bool FocusTrackShader::IsValid() const {
@@ -45,7 +44,7 @@ const std::unique_ptr<KWin::GLShader>&
 FocusTrackShader::Bind() const {
 	//auto filter=static_cast<int>(FocusTrackConfig::FocusTrackConfig());
 	//auto correction=static_cast<bool>(FocusTrackConfig::applyFocusTrack());
-	auto borderColor=static_cast<int>(FocusTrackConfig::borderColor());
+	//auto borderColor=static_cast<int>(FocusTrackConfig::borderColor());
 	auto borderWidth=static_cast<bool>(FocusTrackConfig::borderWidth());
 	//auto focusTrackFilter=static_cast<bool>(FocusTrackConfig::focusTrackFilter());
     m_manager->pushShader(m_shader.get());
