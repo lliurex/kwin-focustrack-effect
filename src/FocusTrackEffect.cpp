@@ -153,7 +153,7 @@ bool FocusTrackEffect::loadFrameQml()
 
 FocusTrackEffect::~FocusTrackEffect(){// = default;
 	m_shaderManager.Unbind();
-	engine->quit();
+	window->deleteLater();
 	}
 
 void FocusTrackEffect::getCurrentFocusCoordsAsync()
