@@ -98,6 +98,7 @@ KConfigGroup FocusTrackEffect::readConfig()
 		const auto gL=group.keyList();
 		return(group);
 }
+
 bool FocusTrackEffect::loadFrameQml()
 {
 	engine = new QQmlApplicationEngine();
@@ -149,6 +150,11 @@ bool FocusTrackEffect::loadFrameQml()
 	}
 	return(engine->rootObjects().isEmpty());
 }
+
+FocusTrackEffect::~FocusTrackEffect(){// = default;
+	m_shaderManager.Unbind();
+	engine->quit();
+	}
 
 void FocusTrackEffect::getCurrentFocusCoordsAsync()
 {
@@ -210,8 +216,6 @@ void FocusTrackEffect::moveFrame(const QByteArray &coords)
 								  Q_ARG(QVariant,coordH));
 	qInfo()<<"Moving end";
 }
-
-FocusTrackEffect::~FocusTrackEffect() = default;
 
 void FocusTrackEffect::windowAdded(KWin::EffectWindow *w)
 {
@@ -370,4 +374,7 @@ void FocusTrackEffect::checkTiled() {
 		checkTiled<false>(geometry.x(), geometry.x() + geometry.width()); // Check horizontally
 		checkTiled<true>(geometry.y(), geometry.y() + geometry.height()); // Check vertically
 	}
+	
+
 }
+
