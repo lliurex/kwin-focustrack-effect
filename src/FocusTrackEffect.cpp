@@ -79,7 +79,7 @@ FocusTrackEffect::FocusTrackEffect()
         	//for (const auto& win: KWin::effects->stackingOrder())
             //	windowAdded(win);
         	//connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::windowAdded);
-            //connect(KWin::effects, &KWin::EffectsHandler::windowDeleted, this, &FocusTrackEffect::windowRemoved);
+            connect(KWin::effects, &KWin::EffectsHandler::windowDeleted, this, &FocusTrackEffect::windowRemoved);
 #if QT_VERSION_MAJOR < 6
 			qInfo() << "FocusTrackEffect: Connecting events...";
 			connect(KWin::effects, &KWin::EffectsHandler::windowFinishUserMovedResized, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
