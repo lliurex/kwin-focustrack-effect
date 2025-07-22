@@ -85,6 +85,7 @@ FocusTrackEffect::FocusTrackEffect()
 			connect(KWin::effects, &KWin::EffectsHandler::windowFinishUserMovedResized, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
 			connect(KWin::effects, &KWin::EffectsHandler::windowMaximizedStateChanged, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
 			connect(KWin::effects, &KWin::EffectsHandler::windowHidden, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
+			connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
 
 #endif
 		}
