@@ -1,3 +1,9 @@
+kwin-effect-focustrack (0.2.0-1llx25) noble; urgency=medium
+
+  * Noble release
+
+ -- Juanma1980 <juanma1980@gmail.com>  Tue, 22 Jul 2025 10:56:13 +0200
+
 kwin-effect-focustrack (0.2.0-0lliurex23) jammy; urgency=medium
 
   * RC release
