@@ -78,13 +78,14 @@ FocusTrackEffect::FocusTrackEffect()
 		if(m_shaderManager.IsValid()) {
         	//for (const auto& win: KWin::effects->stackingOrder())
             //	windowAdded(win);
-        	//connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::windowAdded);
+        	connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::windowAdded);
             connect(KWin::effects, &KWin::EffectsHandler::windowDeleted, this, &FocusTrackEffect::windowRemoved);
 #if QT_VERSION_MAJOR < 6
 			qInfo() << "FocusTrackEffect: Connecting events...";
 			connect(KWin::effects, &KWin::EffectsHandler::windowFinishUserMovedResized, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
 			connect(KWin::effects, &KWin::EffectsHandler::windowMaximizedStateChanged, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
 			connect(KWin::effects, &KWin::EffectsHandler::windowHidden, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
+			//connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::getCurrentFocusCoordsAsync);
 
 #endif
 		}
@@ -220,19 +221,20 @@ void FocusTrackEffect::moveFrame(const QByteArray &coords)
 
 void FocusTrackEffect::windowAdded(KWin::EffectWindow *w)
 {
-    qDebug() << w->windowRole() << w->windowType() << w->windowClass();
-    //const QSet<QString> hardExceptions { "plasmashell", "kscreenlocker_greet", "ksmserver", "krunner" };
+    qInfo() << "added: " << w->windowRole() << w->windowType() << w->windowClass();
+    const QSet<QString> hardExceptions {};// "plasmashell"}; //, "kscreenlocker_greet", "ksmserver", "krunner" };
     const auto name = w->windowClass().split(QChar::Space).first();
-    //if (hardExceptions.contains(name))
-    //    return;
-    if (const auto& [w2, r] = m_managed.insert({w, false}); r) {
+    if (hardExceptions.contains(name))
+        return;
+  /*  if (const auto& [w2, r] = m_managed.insert({w, false}); r) {
 #if QT_VERSION_MAJOR >= 6
         connect(w, &KWin::EffectWindow::windowFrameGeometryChanged, this, &FocusTrackEffect::windowResized);
 #endif
         redirect(w);
         setShader(w, m_shaderManager.GetShader().get());
         checkTiled();
-    }
+    }*/
+	this->getCurrentFocusCoordsAsync();
 }
 void FocusTrackEffect::windowRemoved(KWin::EffectWindow *w)
 {
