@@ -78,7 +78,7 @@ FocusTrackEffect::FocusTrackEffect()
 		if(m_shaderManager.IsValid()) {
         	//for (const auto& win: KWin::effects->stackingOrder())
             //	windowAdded(win);
-        	connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::windowAdded);
+        	//connect(KWin::effects, &KWin::EffectsHandler::windowAdded, this, &FocusTrackEffect::windowAdded);
             connect(KWin::effects, &KWin::EffectsHandler::windowDeleted, this, &FocusTrackEffect::windowRemoved);
 #if QT_VERSION_MAJOR < 6
 			qInfo() << "FocusTrackEffect: Connecting events...";
@@ -192,7 +192,7 @@ void FocusTrackEffect::handleDBusCurrentCoordsAsync(QDBusPendingCallWatcher *cal
 void FocusTrackEffect::handleDBusSignal(const QString &coords)
 {
 	QByteArray strCoords=coords.toUtf8();
-	strCoords.replace("\'","\"");
+	strCoords.replace("\'","\\'");
 	this->moveFrame(strCoords);
 }
 
