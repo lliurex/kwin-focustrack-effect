@@ -8,7 +8,7 @@ set(effect_SRCS
     plugin.cpp
 )
 
-find_package(Qt5  REQUIRED COMPONENTS Quick)
+find_package(Qt6  REQUIRED COMPONENTS Quick)
 kconfig_add_kcfg_files(effect_SRCS FocusTrackConfig.kcfgc)
 kcoreaddons_add_plugin(kwin4_effect_focustrack SOURCES ${effect_SRCS} INSTALL_NAMESPACE "kwin/effects/plugins/")
 
